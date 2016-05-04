@@ -10,8 +10,8 @@ public class POI {
 	private String descripcion;
 
 	public boolean esValido() {
-		return this.getLatitud() != null || this.getLongitud() != null
-				|| this.getNombre() != null;
+		return this.getLatitud() != null && this.getLongitud() != null
+				&& this.getNombre() != null;
 	}
 
 	public Double distanciaAPOI(POI punto) {
