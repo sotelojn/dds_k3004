@@ -14,6 +14,10 @@ public class POI {
 				&& this.getNombre() != null;
 	}
 
+	public boolean estaAMenosDe(PointOfInterest otroPOI, Double metros) {
+		return this.distanciaA(otroPOI) <= metros;
+	}
+	
 	public Double distanciaAPOI(POI punto) {
 
 		final int RADIO = 6371000;
