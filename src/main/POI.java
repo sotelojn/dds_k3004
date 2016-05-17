@@ -1,4 +1,4 @@
-package entrega1;
+package main;
 
 public class POI {
 
@@ -14,8 +14,8 @@ public class POI {
 				&& this.getNombre() != null;
 	}
 
-	public boolean estaAMenosDe(PointOfInterest otroPOI, Double metros) {
-		return this.distanciaA(otroPOI) <= metros;
+	public boolean estaAMenosDe(POI otroPOI, Double metros) {
+		return this.distanciaAPOI(otroPOI) <= metros;
 	}
 	
 	public Double distanciaAPOI(POI punto) {
