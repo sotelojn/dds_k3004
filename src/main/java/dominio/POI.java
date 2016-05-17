@@ -1,4 +1,6 @@
-package dominio;
+package main.java.dominio;
+
+import java.util.Set;
 
 public class POI {
 
@@ -8,7 +10,23 @@ public class POI {
 	private String calle;
 	private int altura;
 	private String descripcion;
+	private Set<String> tags; 
+	
+	public boolean matches(String text) {
+		return this.getNombre().contains(text) ||
+			   this.getDescripcion().contains(text) ||
+			   this.getTags().contains(text);
+	}
+	
+	
+	public Set<String> getTags() {
+		return tags;
+	}
 
+	public void setTags(Set<String> tags) {
+		this.tags = tags;
+	}
+	
 	public boolean esValido() {
 		return this.getLatitud() != null && this.getLongitud() != null
 				&& this.getNombre() != null;
