@@ -1,5 +1,8 @@
 package dominio;
 
+import java.time.LocalTime;
+
+
 public class ParadaColectivo extends POI {
 
 	private final static int RANGO_DE_CERCANIA = 1;
@@ -11,4 +14,9 @@ public class ParadaColectivo extends POI {
 	public ParadaColectivo(String nombre, Posicion posicion) {
 		super(nombre, posicion);
 	}
+	
+	public boolean estaDisponible(DiaDeAtencion dia, LocalTime hora){
+	return	true;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package dominio;
 
+import java.time.LocalTime;
 import java.util.Set;
 
 public abstract class POI {
@@ -11,6 +12,8 @@ public abstract class POI {
 	private Set<String> tags;
 	private Posicion posicion;
 	private final static int RANGO_DE_CERCANIA = 5;
+	private LocalTime horarioApertura;
+	private LocalTime horarioCierre;
 	
 	public POI(String nombre, Posicion posicion) {
 		super();
@@ -86,4 +89,25 @@ public abstract class POI {
 	public static int getRangoDeCercania() {
 		return RANGO_DE_CERCANIA;
 	}
+	
+
+	public LocalTime getHorarioApertura() {
+		return horarioApertura;
+	}
+
+	public void setHorarioApertura(LocalTime horarioApertura) {
+		this.horarioApertura = horarioApertura;
+	}
+
+	public LocalTime getHorarioCierre() {
+		return horarioCierre;
+	}
+
+	public void setHorarioCierre(LocalTime horarioCierre) {
+		this.horarioCierre = horarioCierre;
+	}
+	public boolean estaDisponibleEnHorario(POI poi, LocalTime hora){
+			return  poi.getHorarioApertura().isAfter(hora) && poi.getHorarioCierre().isBefore(hora);
+		}
+	
 }
