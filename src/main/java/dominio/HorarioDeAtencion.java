@@ -1,28 +1,13 @@
 package dominio;
 
 import java.time.LocalTime;
-import java.util.Set;
 
-public class Servicio{
-	
+
+public class HorarioDeAtencion {
+
 	private LocalTime horarioApertura;
 	private LocalTime horarioCierre;
-	private Set<HorarioDeAtencion> dias;
-	private String nombre;
-	
-	
-	public Set<HorarioDeAtencion> getDias() {
-		return dias;
-	}
-	public void setDias(Set<HorarioDeAtencion> dias) {
-		this.dias = dias;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 	public LocalTime getHorarioCierre() {
 		return horarioCierre;
 	}
@@ -35,7 +20,5 @@ public class Servicio{
 	public void setHorarioApertura(LocalTime horarioApertura) {
 		this.horarioApertura = horarioApertura;
 	}
-	
-
 	
 }

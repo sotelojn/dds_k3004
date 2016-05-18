@@ -9,7 +9,7 @@ public class Rubro {
 	private String descripcion;
 	private LocalTime horarioApertura;
 	private LocalTime horarioCierre;
-	private Set<DiaDeAtencion> dias;
+	private Set<HorarioDeAtencion> dias;
 	
 	public int getRangoCercania() {
 		return rangoCercania;
@@ -43,11 +43,11 @@ public class Rubro {
 		this.horarioCierre = horarioCierre;
 	}
 
-	public Set<DiaDeAtencion> getDias() {
+	public Set<HorarioDeAtencion> getDias() {
 		return dias;
 	}
 
-	public void setDias(Set<DiaDeAtencion> dias) {
+	public void setDias(Set<HorarioDeAtencion> dias) {
 		this.dias = dias;
 	}
 	

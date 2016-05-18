@@ -33,11 +33,11 @@ public class CGP extends POI {
 		return poi.getHorarioApertura().isAfter(hora) && poi.getHorarioCierre().isBefore(hora);
 	}
 
-	public boolean estaDisponible(Servicio servicio1, DiaDeAtencion dia, LocalTime hora) {
+	public boolean estaDisponible(Servicio servicio1, HorarioDeAtencion dia, LocalTime hora) {
 		return servicio1.getDias().contains(dia) && estaDisponibleEnHorario(servicio1, hora);
 	}
 
-	public boolean estaDisponible(DiaDeAtencion dia, LocalTime hora) {
+	public boolean estaDisponible(HorarioDeAtencion dia, LocalTime hora) {
 		return true;
 	}
 

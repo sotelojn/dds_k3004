@@ -24,7 +24,11 @@ public class TestDisponibilidad {
 	LocalTime horarioCierreBanco;
 	LocalTime unHorario;
 	LocalTime otroHorario;
-
+	HorarioDeAtencion horarioAtencion;
+	HorarioDeAtencion otroHorarioAtencion;
+	LocalTime horarioTarde;
+	LocalTime horarioNoche;
+	LocalTime horarioTardecita;
 	
 	
 	
@@ -49,10 +53,26 @@ public class TestDisponibilidad {
 	parada60 = new ParadaColectivo("Panamericana y Marquez", 1d, 1d);
 	
 	kiosko = new Comercio("La petaca feliz", 1d, 1d);
+	horarioAtencion = new HorarioDeAtencion();
+	otroHorarioAtencion = new HorarioDeAtencion();
+	Set<Dia> diasAtencionKiosco = new HashSet<Dia>();
+	Set<HorarioDeAtencion> horariosAtencionKiosco = new HashSet<HorarioDeAtencion>();
+	diasAtencionKiosco.add(Dia.LUNES);
+	kiosko.setDiasDeAtencion(diasAtencionKiosco);
+	horarioAtencion.setHorarioApertura(horarioAPerturaBanco);
+	horarioAtencion.setHorarioCierre(horarioCierreBanco);
+	horarioTarde =LocalTime.of(18, 00);
+	horarioNoche = LocalTime.of(20, 00);
+	horarioTardecita = LocalTime.of(19, 00);
+	otroHorarioAtencion.setHorarioApertura(horarioTarde);
+	otroHorarioAtencion.setHorarioCierre(horarioNoche);
+	horariosAtencionKiosco.add(horarioAtencion);
+	horariosAtencionKiosco.add(otroHorarioAtencion);
+	
 	Rubro golosinas = new Rubro();
 	golosinas.setDescripcion("Golosinas");
-	golosinas.setRangoCercania(10);
 	kiosko.setRubro(golosinas);
+	
 	}
 	
 	@Test
@@ -70,5 +90,15 @@ public class TestDisponibilidad {
 		assertFalse(bancoGalicia.estaDisponible(Dia.MARTES,otroHorario));
 		
 	}
+	
+	/*
+	@Test
+	public void testDisponibilidadKioscoAbierto() {
+		assertFalse(kiosko.estaDisponible(Dia.LUNES,horarioTardecita));
+		
+	}
+	TODO ARREGLAR LOS MULTIPLES HORARIOS
+	*/
+	
 	
 }

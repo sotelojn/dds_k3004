@@ -6,7 +6,8 @@ import java.util.Set;
 public class Comercio extends POI {
 	
 	private Rubro rubro;
-	public static Set<DiaDeAtencion> horarios;
+	private Set<HorarioDeAtencion> horarios;
+	private Set<Dia> diasDeAtencion;
 	
 	public Rubro getRubro() {
 		return rubro;
@@ -30,11 +31,35 @@ public class Comercio extends POI {
 		return estaAMenosDe(posicionActual, rubro.getRangoCercania());
 	}
 	
-	public boolean estaDisponibleEnHorario(Rubro rubro1, LocalTime hora){
-		return  rubro1.getHorarioApertura().isAfter(hora) && this.getHorarioCierre().isBefore(hora);
+	public boolean estaDisponibleEnHorario(LocalTime hora){
+		boolean hora1 = false;
+		for(HorarioDeAtencion i: horarios){
+			if(i.getHorarioApertura().isAfter(hora) && i.getHorarioCierre().isBefore(hora)){
+				hora1 = true;
+			}
+			else
+				hora1 = false;
+		}
+		return hora1;
 	}
 	
-	public boolean estaDisponible(DiaDeAtencion dia, LocalTime hora){
-		return this.getDias().contains(dia) && this.estaDisponibleEnHorario(hora);
+	public boolean estaDisponible(Dia dia, LocalTime hora){
+		return this.getDiasDeAtencion().contains(dia) && this.estaDisponibleEnHorario(hora);
+	}
+
+	public Set<Dia> getDiasDeAtencion() {
+		return diasDeAtencion;
+	}
+
+	public void setDiasDeAtencion(Set<Dia> diasDeAtencion) {
+		this.diasDeAtencion = diasDeAtencion;
+	}
+
+	public Set<HorarioDeAtencion> getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(Set<HorarioDeAtencion> horarios) {
+		this.horarios = horarios;
 	}
 }
