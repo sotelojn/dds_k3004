@@ -15,7 +15,7 @@ public class ParadaColectivo extends POI {
 		super(nombre, posicion);
 	}
 	
-	public boolean estaDisponible(DiaDeAtencion dia, LocalTime hora){
+	public boolean estaDisponible(Dia dia, LocalTime hora){
 	return	true;
 	}
 	
