@@ -1,4 +1,4 @@
-package main.java.dominio;
+package dominio;
 
 import java.util.Set;
 import java.util.stream.Stream;

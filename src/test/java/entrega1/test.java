@@ -1,4 +1,4 @@
-package test.java.entrega1;
+package entrega1;
 
 public class test {
 
