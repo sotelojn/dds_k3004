@@ -17,9 +17,8 @@ private Set<Dia> setearDiasAtencionBancos()
 		return diasAtencionBanco;
 	}	
 	
-public POI crearBanco(String nombre, Double lat, Double lon,String calle,int altura,String descripcion,Set<String> tags,LocalTime horarioApertura,LocalTime horarioCierre)
+public POI crearBanco(String nombre, Double lat, Double lon, String calle ,int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Set<Dia> diasDeAtencion)
 {
-Set<Dia> diasDeAtencion = this.setearDiasAtencionBancos();
 POI banco;
 return banco = RepoDePOIs.agregarBanco(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre, diasDeAtencion);
 }
@@ -42,9 +41,9 @@ POI paradaC;
 return paradaC = RepoDePOIs.agregarParadaColectivo(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre);
 }
 
-public void elimnarPOI(POI unPoi,Set<POI> listaPois)
+public void elimnarPOI(POI unPoi)
 {
-	listaPois.remove(unPoi);
+	RepoDePOIs.borrarPOI(unPoi);
 }
 
 }
