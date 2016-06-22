@@ -1,4 +1,4 @@
-package dominio;
+package test.java.dominio;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,13 @@ import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import main.java.dominio.RepoDePOIs;
+import main.java.dominio.Administrador;
+import main.java.dominio.Comuna;
+import main.java.dominio.POI;
+import main.java.dominio.Posicion;
+import main.java.dominio.Servicio;
 
 public class TestRepoPOIS {
 
@@ -37,38 +44,39 @@ public class TestRepoPOIS {
 	@Before
 	public void setUp() {
 		roman = new Administrador();
-		bancoGalicia = roman.crearBanco("Banco Galicia",1d,1d, "Av.Rivadavia", 2300, "Banco Galicia",listaTagGalicia, horarioAPerturaBanco, horarioCierreBanco);
 		posicionActual = new Posicion(1d, 1d);
 		listaTagGalicia.add("grande");
 		listaTagGalicia.add("equina");
 		horarioAPerturaBanco = LocalTime.of(10, 00);
 		horarioCierreBanco = LocalTime.of(15,00);
-		listaPois.add(bancoGalicia);
+		bancoGalicia = roman.crearBanco("Banco Galicia",1d,1d, "Av.Rivadavia", 2300, "Banco Galicia", listaTagGalicia, horarioAPerturaBanco, horarioCierreBanco, null);
 
-		cgp = roman.crearCGP("CGP",1d,1d,"Sarmiento", 1800, "CGP 8", listaTagCGP8, horarioAperturaCGP, horarioCierreCGP, comuna, rentas, serviciosCGP8);
+		listaTagCGP8.add("Amplio");
 		listaTagCGP8.add("Amplio");
 		horarioAperturaCGP = LocalTime.of(8,00);
 		horarioCierreCGP = LocalTime.of(18,00);	
-		listaPois.add(cgp);
-		parada60 = roman.crearParadaColectivo("Parada 60", 1d, 1d, "Panamericana y Marquez", 1000, "Parada 60", tag60Parada, horarioManiana, horarioNoche);
+		cgp = roman.crearCGP("CGP",1d,1d,"Sarmiento", 1800, "CGP 8", listaTagCGP8, horarioAperturaCGP, horarioCierreCGP, comuna, rentas, serviciosCGP8);
+
 		horarioManiana =LocalTime.of(07, 00);
 		horarioNoche = LocalTime.of(23, 30);
-		listaPois.add(parada60);
+		parada60 = roman.crearParadaColectivo("Parada 60", 1d, 1d, "Panamericana y Marquez", 1000, "Parada 60", tag60Parada, horarioManiana, horarioNoche);
+
+
 	}
 	
 	@Test
 	public void testHayBancoCreado() {
-		assertTrue(listaPois.contains(bancoGalicia));
+		assertTrue(RepoDePOIs.existePOI(bancoGalicia));
 	}
 
 	@Test
 	public void testHayTresElementosEnLaListaPOIS() {
-	assertTrue(listaPois.size()== 3);
+	assertTrue(RepoDePOIs.pois.size()== 3);
 }
 	@Test
 	public void borreElCGP() {
-		roman.elimnarPOI(cgp,listaPois);
-		assertFalse(listaPois.contains(cgp));
+		roman.eliminarPOI(cgp);
+		assertFalse(RepoDePOIs.pois.contains(cgp));
 	}
 }
 

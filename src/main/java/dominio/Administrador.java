@@ -41,7 +41,7 @@ POI paradaC;
 return paradaC = RepoDePOIs.agregarParadaColectivo(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre);
 }
 
-public void elimnarPOI(POI unPoi)
+public void eliminarPOI(POI unPoi)
 {
 	RepoDePOIs.borrarPOI(unPoi);
 }
