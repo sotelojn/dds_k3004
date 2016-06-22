@@ -8,6 +8,14 @@ public class CGP extends POI {
 	private Comuna comuna;
 	private Servicio servicio;
 	private Set<Servicio> servicios;
+	
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+	
+	public void setServicios(Set<Servicio> servicios) {
+		this.servicios = servicios;
+	}
 
 	public CGP(String nombre, Double latitud, Double longitud) {
 		super(nombre, latitud, longitud);
