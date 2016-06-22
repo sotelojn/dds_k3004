@@ -73,7 +73,11 @@ public class RepoDePOIs {
 		return nuevaParadaColectivo;
 	}
 	
-	public static void borrarPOI (POI nombre) {
-		pois.remove(nombre);
+	public static void borrarPOI (POI poi) {
+		pois.remove(poi);
+	}
+	
+	public static boolean existePOI (POI poi) {
+		return pois.contains(poi);
 	}
 }
