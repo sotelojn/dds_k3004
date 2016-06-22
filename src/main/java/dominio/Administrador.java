@@ -17,30 +17,34 @@ private Set<Dia> setearDiasAtencionBancos()
 		return diasAtencionBanco;
 	}	
 	
-public void crearBanco(String nombre,Posicion posicion, String calle,int altura,String descripcion,Set<String> tags,LocalTime horarioApertura,LocalTime horarioCierre)
+public POI crearBanco(String nombre, Double lat, Double lon,String calle,int altura,String descripcion,Set<String> tags,LocalTime horarioApertura,LocalTime horarioCierre)
 {
 Set<Dia> diasDeAtencion = this.setearDiasAtencionBancos();
-RepoDePOIs.agregarBanco(nombre, posicion, calle, altura, descripcion, tags, horarioApertura, horarioCierre, diasDeAtencion);
+POI banco;
+return banco = RepoDePOIs.agregarBanco(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre, diasDeAtencion);
 }
 
-public void crearCGP(String nombre, Posicion posicion, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Comuna comuna, Servicio servicio, Set<Servicio> servicios)
+public POI crearCGP(String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Comuna comuna, Servicio servicio, Set<Servicio> servicios)
 {
-RepoDePOIs.agregarCGP(nombre, posicion, calle, altura, descripcion, tags, horarioApertura, horarioCierre, comuna, servicio,servicios);
+POI cgp;
+return cgp = RepoDePOIs.agregarCGP(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre, comuna, servicio,servicios);
 }
 
-public void crearComercio(String nombre, Posicion posicion, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Rubro rubro, Set<HorarioDeAtencion> horarios, Set<Dia> diasDeAtencion)
+public POI crearComercio(String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Rubro rubro, Set<HorarioDeAtencion> horarios, Set<Dia> diasDeAtencion)
 {
-RepoDePOIs.agregarComercio(nombre, posicion, calle, altura, descripcion, tags, horarioApertura, horarioCierre, rubro, horarios, diasDeAtencion);
+POI comercio;
+return comercio = RepoDePOIs.agregarComercio(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre, rubro, horarios, diasDeAtencion);
 }
 
-public void crearParadaColectivo(String nombre, Posicion posicion, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre)
+public POI crearParadaColectivo(String nombre,  Double lat, Double lon,String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre)
 {
-RepoDePOIs.agregarParadaColectivo(nombre, posicion, calle, altura, descripcion, tags, horarioApertura, horarioCierre);
+POI paradaC;
+return paradaC = RepoDePOIs.agregarParadaColectivo(nombre, lat, lon, calle, altura, descripcion, tags, horarioApertura, horarioCierre);
 }
 
-public void elimnarPOI(POI unPoi)
+public void elimnarPOI(POI unPoi,Set<POI> listaPois)
 {
-RepoDePOIs.borrarPOI(unPoi);
+	listaPois.remove(unPoi);
 }
 
 }
