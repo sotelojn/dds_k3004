@@ -1,19 +1,23 @@
 package dominio;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class RepoDePOIs {
-	public static Set<POI> pois;
-	
-	public static Stream<POI> buscar (String text) {
-		return pois.stream()
-				   .filter(poi -> poi.matches(text));
+
+	private List<POI> pois;
+	public RepoDePOIs ()
+	{
+		pois = new ArrayList<POI>();
 	}
-	
-	
-	public static POI agregarBanco (String nombre, Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Set<Dia> diasDeAtencion) {
+	public int cantEnLista()
+	{
+		int cantidad = this.pois.size();
+		return cantidad;
+	}
+	public void agregarBanco(String nombre, Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Set<Dia> diasDeAtencion) {
 		Banco nuevoBanco;
 		nuevoBanco = new Banco(nombre, lat, lon);
 		nuevoBanco.setCalle(calle);
@@ -23,11 +27,10 @@ public class RepoDePOIs {
 		nuevoBanco.setHorarioApertura(horarioApertura);
 		nuevoBanco.setHorarioCierre(horarioCierre);
 		nuevoBanco.setDiasDeAtencion(diasDeAtencion);
-		return nuevoBanco;
-		
+		this.pois.add(nuevoBanco);
 	}
 	
-	public static POI agregarCGP (String nombre, Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Comuna comuna, Servicio servicio, Set<Servicio> servicios) {
+	public void agregarCGP (String nombre, Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Comuna comuna, Servicio servicio, Set<Servicio> servicios) {
 		CGP nuevoCGP;
 		nuevoCGP = new CGP(nombre, lat, lon);
 		nuevoCGP.setCalle(calle);
@@ -39,10 +42,11 @@ public class RepoDePOIs {
 		nuevoCGP.setComuna(comuna);
 		nuevoCGP.setServicio(servicio);
 		nuevoCGP.setServicios(servicios);
-		return nuevoCGP;
+		this.pois.add(nuevoCGP);
+		
 	}
 	
-	public static POI agregarComercio (String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Rubro rubro, Set<HorarioDeAtencion> horarios, Set<Dia> diasDeAtencion) {
+	public POI agregarComercio (String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre, Rubro rubro, Set<HorarioDeAtencion> horarios, Set<Dia> diasDeAtencion) {
 		Comercio nuevoComercio;
 		nuevoComercio = new Comercio(nombre, lat, lon);
 		nuevoComercio.setCalle(calle);
@@ -57,23 +61,33 @@ public class RepoDePOIs {
 		return nuevoComercio;
 	}
 	
-	public static POI agregarParadaColectivo (String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre) {
-		ParadaColectivo nuevaParadaColectivo;
-		nuevaParadaColectivo = new ParadaColectivo(nombre, lat, lon);
+	public void agregarParadaColectivo (String nombre,  Double lat, Double lon, String calle, int altura, String descripcion, Set<String> tags, LocalTime horarioApertura, LocalTime horarioCierre) {
+		ParadaColectivo nuevaParadaColectivo = new ParadaColectivo(nombre, lat, lon);
 		nuevaParadaColectivo.setCalle(calle);
 		nuevaParadaColectivo.setAltura(altura);
 		nuevaParadaColectivo.setDescripcion(descripcion);
 		nuevaParadaColectivo.setTags(tags);
 		nuevaParadaColectivo.setHorarioApertura(horarioApertura);
 		nuevaParadaColectivo.setHorarioCierre(horarioCierre);
-		return nuevaParadaColectivo;
+		this.pois.add(nuevaParadaColectivo);
 	}
 	
-	public static void borrarPOI (POI poi) {
-		pois.remove(poi);
+
+	public boolean existePOI ( String nombre) {
+		for (POI poi : pois) {
+			if (poi.getNombre() == nombre) {
+	        	return true;
+     }
+}
+    return false;
+}
+	public void borrarPOI (String nombre) {
+		for (POI poi : pois) {
+	        if (poi.getNombre().contains(nombre))  {
+	        	this.pois.remove(poi);
+	     }
+		}
 	}
-	
-	public static boolean existePOI (POI poi) {
-		return pois.contains(poi);
-	}
+//		return pois.contains(poi.getNombre(nombre));
+//	}
 }
