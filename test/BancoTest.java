@@ -66,10 +66,10 @@ public class BancoTest {
 		
 	}
 //	
-//	@Test
-//	public void testBancoDisponibilidad09() {
-//		assertFalse(this.unBanco.disponible("09:00","Inversiones"));
-//	}
+	@Test
+	public void testBancoDisponibilidad09() {
+		assertFalse(this.unBanco.disponible("09:00","Inversiones"));
+	}
 //
 //	@Test
 //	public void testBancoDisponibilidad10() {

@@ -24,6 +24,7 @@ import dominio.POI.localComercial.Rubro;
 import dominio.POI.sucursal.Sucursal;
 import dominio.usuario.NuevaConsultaExtendida;
 import dominio.usuario.UsuarioTerminal;
+import dominio.usuario.UsuarioAdministrador;
 
 public class setUp {
 	
@@ -36,6 +37,7 @@ public class setUp {
 	DayOfWeek domingo = DayOfWeek.SUNDAY;
 
 	
+
 	//GENERA UN BANCO
 	
 		HorarioAtencion Lunes = new HorarioAtencion(lunes, 10.00, 15.00);
@@ -218,6 +220,7 @@ public class setUp {
 		unRepo.crearUnCGP(direccionCGP117, coordenadaCGP117, "cgp117", comunaCGP117);
 		unRepo.crearUnLocalComercial(direccionRamon, "Los Ramones", coordenadaRamon, comercial, disponibiidadRamon);
 		unRepo.agregarPOIConId(galiciaDevoto);}
+		Repositorio unRepo2 = new Repositorio();
 	
 	//COORDENADAS PARA LA CERCANIA
 	//CoordenadaLejana
@@ -292,4 +295,7 @@ public class setUp {
 			//CON PERMISO 
 			UsuarioTerminal usuarioTerminal = new UsuarioTerminal("elJuniorUsuarioConPermiso",
 					unRepo,listaAccionesTerm, consultaRealizadasTerm, "");	
+		//GENERA UN USUARIO ADMINISTRADOR
+			UsuarioAdministrador roman = new UsuarioAdministrador();
+		
 }

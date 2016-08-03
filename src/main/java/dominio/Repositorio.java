@@ -24,6 +24,9 @@ public class Repositorio {
 	private List<Consulta> cache;
 	private EntidadesExternas todasLasEntidades;
 	
+	public int tamanio(){
+		return this.POIs.size();
+	}
 	
 	public Repositorio(){
 		POIs = new ArrayList<PuntoDeInteres>();
