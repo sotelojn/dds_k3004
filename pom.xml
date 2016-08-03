@@ -4,10 +4,28 @@
 	<groupId>dds_k3004</groupId>
 	<artifactId>dds_k3004</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>dds_k3004</name>
-	<description>dds_k3004 group 5</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- http://mvnrepository.com/artifact/junit/junit -->
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -25,33 +43,15 @@
 			<version>1.0.0 </version>
 		</dependency>
 		<dependency>
-						<version>2.2.2</version>
-		</dependency>
-<groupId>com.google.code.gson</groupId>
+			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 		<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
-	</dependency>
+		</dependency>
 	</dependencies>
-	<build>		
-		<plugins>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>	
-				<version>2.6</version>				
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>		
-				<version>3.5.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+
 </project>
