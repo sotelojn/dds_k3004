@@ -13,7 +13,7 @@ import dominio.acciones.AccionesDeUsuario;
 public class UsuarioTerminal {
 
 	private String usuario;
-	private Repositorio repositorio;
+	public Repositorio repositorio;
 	private List<AccionesDeUsuario> acciones;
 	private List<NuevaConsultaExtendida> consultaRealizadas;
 	private String mail;

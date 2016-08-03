@@ -296,6 +296,6 @@ public class setUp {
 			UsuarioTerminal usuarioTerminal = new UsuarioTerminal("elJuniorUsuarioConPermiso",
 					unRepo,listaAccionesTerm, consultaRealizadasTerm, "");	
 		//GENERA UN USUARIO ADMINISTRADOR
-			UsuarioAdministrador roman = new UsuarioAdministrador();
+			UsuarioAdministrador roman = new UsuarioAdministrador("roman",unRepo2,listaAccionesTerm,consultaRealizadasTerm,"");
 		
 }

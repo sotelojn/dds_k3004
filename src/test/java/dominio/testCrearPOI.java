@@ -2,13 +2,8 @@ package dominio;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
-
-import dominio.POI.cgp.Servicio;
-import dominio.POI.sucursal.Sucursal;
 
 public class testCrearPOI extends setUp{
 
@@ -23,8 +18,8 @@ public class testCrearPOI extends setUp{
 	
 	@Test
 	public void usuarioCreaNuevoPOI(){
-		roman.crearBanco(direccionGalicia, "Galicia", "galiciaDevoto", coordenadaGaliciaDevoto, listaDeServicios, unRepo2);
-		roman.crearCGP(direccionCGP3, coordenadaCGP3, "cgp3", comunaCGP3, unRepo2);
+		roman.crearBanco(direccionGalicia, "Galicia", "galiciaDevoto", coordenadaGaliciaDevoto, listaDeServicios);
+		roman.crearCGP(direccionCGP3, coordenadaCGP3, "cgp3", comunaCGP3);
 		assertTrue(unRepo2.tamanio()==2);
 	}
 	
