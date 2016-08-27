@@ -8,7 +8,7 @@ import org.joda.time.Seconds;
 
 import dominio.PuntoDeInteres;
 import dominio.Repositorio;
-import dominio.usuario.UsuarioTerminal;
+import dominio.usuario.Usuario;
 
 public class AccionLoggear extends AccionesDeUsuario{
 
@@ -20,7 +20,7 @@ public class AccionLoggear extends AccionesDeUsuario{
 
 	@Override
 	public void aplicarAccion(DateTime tiempoI, DateTime tiempoF, String textoLibre,
-			List<PuntoDeInteres> listaDePOIsBuscados, UsuarioTerminal unUsuario, int tiempoDeBusqueda) {
+			List<PuntoDeInteres> listaDePOIsBuscados, Usuario unUsuario, int tiempoDeBusqueda) {
 		 
 		int tiempoDeConsulta = Seconds.secondsBetween(tiempoI, tiempoF).getSeconds();
 		

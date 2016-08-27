@@ -10,7 +10,7 @@ import dominio.PuntoDeInteres;
 import dominio.Repositorio;
 import dominio.acciones.AccionesDeUsuario;
 
-public class UsuarioTerminal {
+public class UsuarioTerminal implements Usuario{
 
 	private String usuario;
 	public Repositorio repositorio;
@@ -38,6 +38,7 @@ public class UsuarioTerminal {
 		this.mail = unMail;
 	}
 
+	@Override
 	public List<PuntoDeInteres> realizarBuquedaDePOI(String textoLibre, int tiempoDeBusqueda) {
 		return this.realizarLaBuquedaDePOI(textoLibre, tiempoDeBusqueda);
 	}
@@ -53,6 +54,7 @@ public class UsuarioTerminal {
 		return (listaDePOIsBuscados);
 	}
 
+	@Override
 	public void agregarConsulta(NuevaConsultaExtendida consultaNueva) {
 		this.getConsultaRealizadas().add(consultaNueva);
 	}
@@ -108,4 +110,9 @@ public class UsuarioTerminal {
 		return this.getConsultaRealizadas().size();
 	}
 
+	@Override
+	public void actualizarListaDeAcciones(List<AccionesDeUsuario> acciones) {
+		this.setAcciones(acciones);
+	}
+	
 }

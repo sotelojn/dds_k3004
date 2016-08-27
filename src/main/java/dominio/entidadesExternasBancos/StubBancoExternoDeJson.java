@@ -26,7 +26,7 @@ public class StubBancoExternoDeJson extends BancoExterno{
 		servicios2.add("Transferencias");
 		servicios2.add("Seguros");
 		
-		unBanco.setCalle("unaCalle");
+		unBanco.setCalle("Galicia");
 		unBanco.setNumero("unNumero");
 		unBanco.setBanco("BancoDelaPlaza");
 		unBanco.setCx(-35.9338322);

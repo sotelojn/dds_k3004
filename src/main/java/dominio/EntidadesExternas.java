@@ -6,10 +6,13 @@ import java.util.List;
 import dominio.adapter.AdapterBancoJSon;
 import dominio.adapter.AdapterCentroDTO;
 import dominio.adapter.InterfaceAdapter;
+import dominio.adapter.AdapterGobiernoDeLaCiudad;
+import dominio.adapter.ObjetoDeAyuda;
 
 public class EntidadesExternas {
 	
 	private List<InterfaceAdapter> adapters;
+	private AdapterGobiernoDeLaCiudad adapterGob;
 	
 	public List<InterfaceAdapter> getAdapters(){
 		return this.adapters;
@@ -19,10 +22,15 @@ public class EntidadesExternas {
 		this.adapters = new ArrayList<InterfaceAdapter>();
 	}
 	
+	public void setAdapterGob(AdapterGobiernoDeLaCiudad unAdap){
+		this.adapterGob = unAdap;
+	}
+	
 	public void setteoDeAdapters(){
 		this.setAdapters();
 		this.getAdapters().add(new AdapterCentroDTO());
 		this.getAdapters().add(new AdapterBancoJSon());
+		this.setAdapterGob(new AdapterGobiernoDeLaCiudad());
 	}
 	
 	public List<PuntoDeInteres> busquedaExterna(String texto){
@@ -39,4 +47,23 @@ public class EntidadesExternas {
 		
 		return nuevaListaExterna;
 		}
+	
+	public String dameLosPOIsABajar(Repositorio unRepo) {
+		String termino;
+		this.setteoDeAdapters();
+		ObjetoDeAyuda obj = new ObjetoDeAyuda();
+		obj = (this.getAdapterDeGobierno().dameDeBajaLaLista(unRepo));
+		
+		if (obj.getFinalizo() == true){
+			termino = "ok";
+		}else{
+			termino = "error";
+			unRepo = obj.getUnRepo();
+		};
+		return termino;
+	}
+	
+	public AdapterGobiernoDeLaCiudad getAdapterDeGobierno(){
+		return adapterGob;
+	}
 }

@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
 
 import dominio.PuntoDeInteres;
 import dominio.usuario.NuevaConsultaExtendida;
-import dominio.usuario.UsuarioTerminal;
+import dominio.usuario.Usuario;
 
 public class AccionGuardarConsultas extends AccionesDeUsuario{
 
@@ -16,7 +16,7 @@ public class AccionGuardarConsultas extends AccionesDeUsuario{
 
 	@Override
 	public void aplicarAccion(DateTime tiempoI, DateTime tiempoF, String textoLibre,
-			List<PuntoDeInteres> listaDePOIsBuscados, UsuarioTerminal unUsuario,
+			List<PuntoDeInteres> listaDePOIsBuscados, Usuario unUsuario,
 			int tiempoDeBusqueda) {
 
 		NuevaConsultaExtendida nuevaConsulta = new NuevaConsultaExtendida(textoLibre,

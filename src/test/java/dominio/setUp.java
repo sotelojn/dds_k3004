@@ -1,11 +1,16 @@
 package dominio;
 
+import java.io.File;
+import java.io.FileReader;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Polygon;
 import dominio.Repositorio;
+import dominio.ProtocoloDeError.EnviarMail;
+import dominio.ProtocoloDeError.ProtocoloDeError;
+import dominio.ProtocoloDeError.ReintentarProceso;
 import dominio.acciones.AccionLoggear;
 import dominio.acciones.AccionesDeUsuario;
 import dominio.adapter.AdapterBancoJSon;
@@ -22,9 +27,14 @@ import dominio.POI.colectivo.ParadaDeColectivo;
 import dominio.POI.localComercial.Local;
 import dominio.POI.localComercial.Rubro;
 import dominio.POI.sucursal.Sucursal;
+import dominio.procesos.ActualizaciónDeLocalesComerciales;
+import dominio.procesos.AgregarAccionesAUsuarios;
+import dominio.procesos.BajarPOI;
+import dominio.procesos.Proceso;
+import dominio.procesos.ProcesoMultiple;
 import dominio.usuario.NuevaConsultaExtendida;
-import dominio.usuario.UsuarioTerminal;
 import dominio.usuario.UsuarioAdministrador;
+import dominio.usuario.UsuarioTerminal;
 
 public class setUp {
 	
@@ -37,7 +47,6 @@ public class setUp {
 	DayOfWeek domingo = DayOfWeek.SUNDAY;
 
 	
-
 	//GENERA UN BANCO
 	
 		HorarioAtencion Lunes = new HorarioAtencion(lunes, 10.00, 15.00);
@@ -55,10 +64,10 @@ public class setUp {
 		}
 		
 		Servicio cobroCheques = new Servicio("CobroCheques", horariosDeTodaLaSemana);
-		Servicio depositos = new Servicio("Depósito", horariosDeTodaLaSemana);
+		Servicio depositos = new Servicio("Deposito", horariosDeTodaLaSemana);
 		Servicio extracciones = new Servicio("Extracciones", horariosDeTodaLaSemana);
 		Servicio transferencias = new Servicio("Transferencias", horariosDeTodaLaSemana);
-		Servicio creditos = new Servicio("Créditos", horariosDeTodaLaSemana);
+		Servicio creditos = new Servicio("Creditos", horariosDeTodaLaSemana);
 		
 		List<Servicio> serviciosNuevo = new ArrayList<Servicio> ();{
 		serviciosNuevo.add(cobroCheques);
@@ -98,7 +107,7 @@ public class setUp {
 	
 	//GENERA UN CGP
 		//CGP3
-		Direccion direccionCGP3 = new Direccion ("Junín", "521");
+		Direccion direccionCGP3 = new Direccion ("Junin", "521");
 		Direccion direccionCGP117 = new Direccion ("Bacacay","968");
 	
 		Coordenada coordenadaCGP3 = new Coordenada (-34.603302, -58.397160);
@@ -209,7 +218,7 @@ public class setUp {
 	disponibiidadRamon.add(horariosLPM);
 	disponibiidadRamon.add(horariosMTot);}
 	
-	Local localRamon = new Local(direccionRamon, "Los Ramones", coordenadaRamon, comercial, disponibiidadRamon);
+	Local localRamon = new Local(direccionRamon, "Ramones", coordenadaRamon, comercial, disponibiidadRamon);
 
 	//GENERACION DE REPOSITORIO
 		Repositorio unRepo = new Repositorio();{
@@ -218,10 +227,10 @@ public class setUp {
 		unRepo.crearUnColectivo(direccion2, "2", coordenada2Rivadavia, 2, paradasDeColectivo2);
 		unRepo.crearUnCGP(direccionCGP3, coordenadaCGP3, "cgp3", comunaCGP3);
 		unRepo.crearUnCGP(direccionCGP117, coordenadaCGP117, "cgp117", comunaCGP117);
-		unRepo.crearUnLocalComercial(direccionRamon, "Los Ramones", coordenadaRamon, comercial, disponibiidadRamon);
+		unRepo.crearUnLocalComercial(direccionRamon, "Ramones", coordenadaRamon, comercial, disponibiidadRamon);
 		unRepo.agregarPOIConId(galiciaDevoto);}
 		Repositorio unRepo2 = new Repositorio();
-	
+		
 	//COORDENADAS PARA LA CERCANIA
 	//CoordenadaLejana
 	Coordenada coordenadaLejana = new Coordenada (-34.737688, -58.486905);
@@ -264,10 +273,10 @@ public class setUp {
 	
 	List<String> listaDeStringDeServicios = new ArrayList<String>();
 	{listaDeStringDeServicios.add("Cobrocheques");
-	listaDeStringDeServicios.add("Depósitos");
+	listaDeStringDeServicios.add("Depositos");
 	listaDeStringDeServicios.add("Extracciones");
 	listaDeStringDeServicios.add("Transferencias");
-	listaDeStringDeServicios.add("Créditos");		
+	listaDeStringDeServicios.add("Creditos");		
 	}
 	
 	BancoExterno objetoJSon = new BancoExterno("unaCalle", "unNumero", "BancoDeLaPlaza"
@@ -285,17 +294,51 @@ public class setUp {
 			listaAccionesTerm.add(accionLoggear);}
 			//CREACION DE LA LISTA DE ACCIONES VACIA
 			List<AccionesDeUsuario> listaAccionesVacia = new ArrayList<AccionesDeUsuario>();
+		
+		//ENTIDAD EXTERNA
+			EntidadesExternas entidad = new EntidadesExternas();
+		
 		//CREAR LISTA DE CONSULTAS
 			List<NuevaConsultaExtendida> consultaRealizadasAdm = new ArrayList<NuevaConsultaExtendida> ();
 			List<NuevaConsultaExtendida> consultaRealizadasTerm = new ArrayList<NuevaConsultaExtendida> ();
+		
+		//PROTOCOLO
+			//PROTOCOLO MAIL
+			ProtocoloDeError protocoloMail = new EnviarMail();
+			//PROTOCOLO REPETIR
+			ProtocoloDeError protocoloRepetir = new ReintentarProceso(2);
+			
 		//TERMINAL
-			//SIN PERMISOS
+			//SIN ACCIONES
 			UsuarioTerminal usuarioTerminalSinAcciones = new UsuarioTerminal("elJuniorUsuarioConPermiso",
 					unRepo,listaAccionesVacia, consultaRealizadasTerm, "");
-			//CON PERMISO 
+			//CON ACCIONES
 			UsuarioTerminal usuarioTerminal = new UsuarioTerminal("elJuniorUsuarioConPermiso",
-					unRepo,listaAccionesTerm, consultaRealizadasTerm, "");	
+					unRepo,listaAccionesTerm, consultaRealizadasTerm, "");				
+		//ADMINISTRADR
+			//SIN ACCIONES
+			UsuarioAdministrador usuarioAdminSinAcciones = new UsuarioAdministrador("elJuniorUsuarioConPermiso",
+					unRepo,listaAccionesVacia, consultaRealizadasTerm, "", protocoloMail);
+			//CON ACCIONES
+			UsuarioAdministrador usuarioAdmin = new UsuarioAdministrador("elJuniorUsuarioConPermiso",
+					unRepo,listaAccionesTerm, consultaRealizadasTerm, "", protocoloRepetir);
+		// CREO ARCHIVO DE LOCALES
+			//File archivo = File("/dds_k3004/archivos/locales.txt";
+		//	FileReader archivoReader = new FileReader(new File("archivos/locales.txt"));
+				//PROCESOS
+			//ACTUALIZAR
+		//	ActualizaciónDeLocalesComerciales actualizar = new ActualizaciónDeLocalesComerciales(archivoReader, unRepo);
+			//BAJAR POI
+			BajarPOI baja = new BajarPOI(unRepo,entidad);
+			//AGREGAR ACCIONES A USUARIO
+			AgregarAccionesAUsuarios agregarAccionesAUsuario = new AgregarAccionesAUsuarios(listaAccionesAdm);
+			//PROCESO MULTIPLE
+			List<Proceso> listaProceso = new ArrayList<Proceso>();{
+			listaProceso.add(baja);
+			listaProceso.add(agregarAccionesAUsuario);}
+			ProcesoMultiple procesomultiple = new ProcesoMultiple(listaProceso);
+
 		//GENERA UN USUARIO ADMINISTRADOR
-			UsuarioAdministrador roman = new UsuarioAdministrador("roman",unRepo2,listaAccionesTerm,consultaRealizadasTerm,"");
+			UsuarioAdministrador roman = new UsuarioAdministrador("roman",unRepo2,listaAccionesTerm,consultaRealizadasTerm,"",protocoloMail);
 		
 }

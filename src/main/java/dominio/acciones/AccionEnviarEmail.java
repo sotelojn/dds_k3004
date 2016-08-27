@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Seconds;
 
 import dominio.PuntoDeInteres;
-import dominio.usuario.UsuarioTerminal;
+import dominio.usuario.Usuario;
 
 public class AccionEnviarEmail extends AccionesDeUsuario{
 
@@ -17,7 +17,7 @@ public class AccionEnviarEmail extends AccionesDeUsuario{
 
 	@Override
 	public void aplicarAccion(DateTime tiempoI, DateTime tiempoF, String textoLibre,
-			List<PuntoDeInteres> listaDePOIsBuscados, UsuarioTerminal unUsuario,
+			List<PuntoDeInteres> listaDePOIsBuscados, Usuario unUsuario,
 			int tiempoDeBusqueda) {
 		
 		int tiempoDeConsulta = Seconds.secondsBetween(tiempoI, tiempoF).getSeconds();

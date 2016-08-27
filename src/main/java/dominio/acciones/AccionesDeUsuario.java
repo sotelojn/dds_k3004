@@ -5,7 +5,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import dominio.PuntoDeInteres;
-import dominio.usuario.UsuarioTerminal;
+import dominio.usuario.Usuario;
 
 public abstract class AccionesDeUsuario {
 	
@@ -16,10 +16,10 @@ public abstract class AccionesDeUsuario {
 	}
 
 	public abstract void aplicarAccion(DateTime tiempoI, DateTime tiempoF, String textoLibre,
-			List<PuntoDeInteres> listaDePOIsBuscados, UsuarioTerminal unUsuario, int tiempoDeBusqueda);
+			List<PuntoDeInteres> listaDePOIsBuscados, Usuario unUsuario, int tiempoDeBusqueda);
 	
 	public void puedeAplicarAccion(DateTime tiempoI, DateTime tiempoF,
-			String textoLibre, List<PuntoDeInteres> listaDePOIsBuscados, UsuarioTerminal unUsuario, int tiempoDeBusqueda){
+			String textoLibre, List<PuntoDeInteres> listaDePOIsBuscados, Usuario unUsuario, int tiempoDeBusqueda){
 		
 		if ( this.getPermiso() ){
 			this.aplicarAccion(tiempoI, tiempoF, textoLibre, listaDePOIsBuscados, unUsuario, tiempoDeBusqueda);

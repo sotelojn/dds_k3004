@@ -13,6 +13,8 @@ public class Local extends PuntoDeInteres {
 	private Rubro rubro;
 	private List<HorarioAtencion> disponibilidad;
 
+	public Local(){};
+	
 	public Local(Direccion unaDireccion, String unNombre, Coordenada unaCoordenada, Rubro rubro,
 			List<HorarioAtencion> disponibiidad) {
 		super(unaDireccion, "locales", unNombre, unaCoordenada);
@@ -91,6 +93,9 @@ public class Local extends PuntoDeInteres {
 		return true;
 	}
 
+	public void reemplazaTusPalabrasClaves(List<String> palabras){
+		this.getRubro().setPalabrasClave(palabras);
+	}
 	
 	
 }

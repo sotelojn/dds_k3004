@@ -34,27 +34,6 @@ public class Repositorio {
 		todasLasEntidades = new EntidadesExternas();
 	}
 	
-	public void crearUnColectivo(Direccion unaDireccion, String unNombre, Coordenada unaCoordenada, int numeroDeLinea, List<ParadaDeColectivo> paradasDeColectivo){
-	
-		Colectivo unPOI = new Colectivo(unaDireccion, unNombre, unaCoordenada, numeroDeLinea, paradasDeColectivo);
-		this.agregarPOIConId(unPOI);
-		
-	}
-	
-	public void crearUnCGP(Direccion unaDireccion, Coordenada unaCoordenada, String unNombre, Comuna unaComuna){
-		
-		CGP unPOI = new CGP(unaDireccion,unaCoordenada,unNombre,unaComuna);
-		this.agregarPOIConId(unPOI);
-
-	}
-	public List<PuntoDeInteres> getPOIs() {
-		return POIs;
-	}
-
-	public void setPOIs(List<PuntoDeInteres> POIs) {
-		POIs = POIs;
-	}
-
 	public void crearUnaSucursalBancaria(Direccion unaDireccion, String unBanco, 
 			String unNombre, Coordenada unaCoordenada, List<Servicio> listaDeServicios){
 	
@@ -69,11 +48,32 @@ public class Repositorio {
 		this.agregarPOIConId(unPOI);
 	
 	}
+		
+	public void crearUnColectivo(Direccion unaDireccion, String unNombre, Coordenada unaCoordenada, int numeroDeLinea, List<ParadaDeColectivo> paradasDeColectivo){
 	
+		Colectivo unPOI = new Colectivo(unaDireccion, unNombre, unaCoordenada, numeroDeLinea, paradasDeColectivo);
+		this.agregarPOIConId(unPOI);
+		
+	}
+	
+	public void crearUnCGP(Direccion unaDireccion, Coordenada unaCoordenada, String unNombre, Comuna unaComuna){
+		
+		CGP unPOI = new CGP(unaDireccion,unaCoordenada,unNombre,unaComuna);
+		this.agregarPOIConId(unPOI);
+
+	}
+	
+	public List<PuntoDeInteres> getPOIs() {
+		return POIs;
+	}
+
+	public void setPOIs(List<PuntoDeInteres> POIs) {
+		POIs = POIs;
+	}
+
 	public void guardarConsulta(Consulta consulta){
 		this.getCache().add(consulta);
 	}
-
 
 	public void LoguearConsulta(DateTime tiempoI, DateTime tiempoF, String textoConsulta, int cantidadResultados){
 		Seconds TiempoConsulta = Seconds.secondsBetween(tiempoI, tiempoF);
@@ -82,7 +82,6 @@ public class Repositorio {
 		 log.info("Tiempo de Busqueda : " + TiempoConsulta);
 	}
 	
-
 	public List<PuntoDeInteres> buscarPOI (String textoLibre){
 		List<PuntoDeInteres> resultPOIs = new ArrayList<PuntoDeInteres> ();
 		
@@ -145,10 +144,9 @@ public class Repositorio {
 	
 	}
 
-	// Busqueda por coordenadas
 	public PuntoDeInteres searchByCoord(Coordenada otrasCoordenadas) {
-		
 		return 	this.selectByCoordenada(otrasCoordenadas);
+	
 	}
 	
 	public PuntoDeInteres selectByCoordenada(Coordenada coordenada){
@@ -172,9 +170,9 @@ public class Repositorio {
 		return null;
 	}
 		
-	// Busqueda por ID
 	public PuntoDeInteres searchById(int id) {
 		return this.selectById(id);
+
 	}
 
 	public PuntoDeInteres selectById(int id){
@@ -208,7 +206,6 @@ public class Repositorio {
 	
 	public void verificarExistenciaEnElRepo(PuntoDeInteres unPOI) {
 		if (!this.estaEnElRepositorio(unPOI)) {
-			//throw new NoExisteElPOIEnElRepositorioException();
 			this.agregarPOIConId(unPOI);	
 			
 		}else{
@@ -245,6 +242,15 @@ public class Repositorio {
 	public Consulta dameElUltimoAgregadoEnLaCache(String texto) {
 		return this.getCache().stream().filter(unaConsulta -> unaConsulta.getConsulta().equals(texto))
 				.collect(Collectors.toList()).get(0);
+	}
+	
+	public PuntoDeInteres buscarLocalComercial(String unNombre){
+		Local aux = new Local();
+		
+		return this.getPOIs().stream().filter(unPOI ->
+			unPOI.getClass()== aux.getClass() && unPOI.getNombre() == unNombre)
+			.collect(Collectors.toList()).get(0);
+		
 	}
 	
 }

@@ -2,13 +2,27 @@ package dominio;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class testDeBusqueda extends setUp{
 
 	@Test
+	public void seEncuentraEnLaCache(){
+		List<PuntoDeInteres> listaDePOIs = new ArrayList<PuntoDeInteres>();
+		listaDePOIs.add(galiciaDevoto);
+		listaDePOIs.add(galiciaDevoto);
+		Consulta consulta = new Consulta("Gali", listaDePOIs);
+		unRepo.getCache().add(consulta);
+		int cant = unRepo.buscarPOI("Gali").size();
+		assertTrue ( cant == 2);
+	}
+	
+	@Test
 	public void seEncuentraLaSucursalEnLaBusquedaTrue(){
-		Boolean encuentraSucursal = unRepo.buscarPOI("Gali").size() >= 1;
+		Boolean encuentraSucursal = unRepo.buscarPOI("Gali").size() == 2;
 		assertTrue(encuentraSucursal);
 	}
 	
