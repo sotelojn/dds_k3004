@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>Busqueda de POIs</title>
+    <link rel="stylesheet" href="css/styles.css"
+  </head>
+  <script>
+  function check() {
+   var buscar = document.getElementById("nombre1").value;
+   if(buscar == "CGP1"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../CGP/CGP1.html");}
+	else{
+		window.alert("<ola");}
+   }
+
+  </script>
+<body>
+  <h2>POIS</h2>
+  <div>
+      <form id="login" name="login" action="..\terminal\portal.html" >
+      <input type="submit" name="continue" value="Volver">
+	  </form>
+  <div>
+    <table>
+      <tr>
+        <th>Nombre</th>
+		<th>Direcci&oacute;n</th>
+      </tr>
+      <tr>
+        <td>Kiosco Alberto</td>
+        <td>Av. Medrano 840</td>		
+      </tr>
+      <tr>
+        <th>Kiosco Open 25</th>
+        <th>Av. Corrientes 9823</th>
+      </tr>
+      <tr>
+         <th>Hospital Pirovano</th>
+        <th>Av. Monroe 3555</th>
+      </tr>
+    </table>
+  </body>
+</html>

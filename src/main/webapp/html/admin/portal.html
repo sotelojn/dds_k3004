@@ -4,6 +4,29 @@
    <title>Busqueda de POIs</title>
     <link rel="stylesheet" href="css/styles.css"
   </head>
+      <script>
+  function check() {
+   var buscar = document.getElementById("nombre1").value;
+   var buscar2 = document.getElementById("nombreComienzaCon").value;
+   if(buscar == "CGP" && buscar2 == "Parada"){
+ 
+		window.open("../poi/poiCGP&Col.html",'_self',false);}
+	else{
+		 if(buscar == "Banco" && buscar2 == "CGP"){
+
+		window.open("../poi/poiCGP&Banco.html",'_self',false);}
+	else{
+		 if(buscar == "Kiosco" && buscar2 == "Hospital"){
+
+		window.open("../poi/poiCom&Publi.html",'_self',false);}
+	else{
+		window.alert("Error");
+   }
+   }
+   }
+   }
+
+  </script>
 <body>
   <h2>POIS</h2>
   <div>
@@ -18,7 +41,7 @@
     </div>
     <div>
       <input type="button" id="crearPOI" value="Agregar">
-      <input type="button" id="buscarAmigos" value="Buscar" autofocus="true">
+        <input type="button" id="buscarAmigos" value="Buscar" autofocus="true" onclick="check()">
     </div>
   </div>
   <div>

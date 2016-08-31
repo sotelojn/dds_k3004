@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>Busqueda de POIs</title>
+    <link rel="stylesheet" href="css/styles.css"
+  </head>
+  <script>
+  function check() {
+   var buscar = document.getElementById("nombre1").value;
+   if(buscar == "CGP1"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../CGP/CGP1.html");}
+	else{
+		window.alert("<ola");}
+   }
+
+  </script>
+<body>
+  <h2>POIS</h2>
+  <div>
+      <form id="login" name="login" action="..\terminal\portal.html" >
+      <input type="submit" name="continue" value="Volver">
+	  </form>
+  <div>
+    <table>
+      <tr>
+        <th>Nombre</th>
+		<th>Direcci&oacute;n</th>
+      </tr>
+      <tr>
+        <td>Banco ICBC</td>
+        <td>Av. Corrientes 9843</td>		
+      </tr>
+      <tr>
+        <th>Banco Santander Rio</th>
+        <th>Av. Córdoba 9230</th>
+      </tr>
+      <tr>
+         <th>CGP 9</th>
+        <th> Av Directorio 4360</th>
+      </tr>
+    </table>
+  </body>
+</html>

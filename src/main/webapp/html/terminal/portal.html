@@ -9,21 +9,18 @@
    var buscar = document.getElementById("nombre1").value;
    var buscar2 = document.getElementById("nombreComienzaCon").value;
    if(buscar == "CGP" && buscar2 == "Parada"){
-   document.write(buscar);
-		window.alert(buscar);
-		window.open("../poiCGP&Col.html");}
+ 
+		window.open("../poi/poiCGP&Col.html",'_self',false);}
 	else{
 		 if(buscar == "Banco" && buscar2 == "CGP"){
-   document.write(buscar);
-		window.alert(buscar);
-		window.open("../poiCGP&Banco.html");}
+
+		window.open("../poi/poiCGP&Banco.html",'_self',false);}
 	else{
 		 if(buscar == "Kiosco" && buscar2 == "Hospital"){
-   document.write(buscar);
-		window.alert(buscar);
-		window.open("../poiComercio&Hospital.html");}
+
+		window.open("../poi/poiCom&Publi.html",'_self',false);}
 	else{
-		
+		window.alert("Error");
    }
    }
    }
@@ -43,7 +40,7 @@
       <input type="text" id="nombreComienzaCon" placeholder="nombre" max="25">
     </div>
     <div>
-      <input type="button" id="buscarAmigos" value="Buscar" autofocus="true">
+      <input type="button" id="buscarAmigos" value="Buscar" autofocus="true" onclick="check()">
     </div>
   </div>
   <div>
