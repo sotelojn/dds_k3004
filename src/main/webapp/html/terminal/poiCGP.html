@@ -4,6 +4,18 @@
    <title>Busqueda de POIs</title>
     <link rel="stylesheet" href="css/styles.css"
   </head>
+  <script>
+  function check() {
+   var buscar = document.getElementById("nombre1").value;
+   if(buscar == "CGP1"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../CGP/CGP1.html");}
+	else{
+		window.alert("<ola");}
+   }
+
+  </script>
 <body>
   <h2>POIS</h2>
   <div>
@@ -17,8 +29,7 @@
       <input type="text" id="nombreComienzaCon" placeholder="nombre" max="25">
     </div>
     <div>
-      <input type="button" id="crearPOI" value="Agregar">
-      <input type="button" id="buscarAmigos" value="Buscar" autofocus="true">
+      <input type="button" id="buscarAmigos" value="Buscar" autofocus="true" onclick="check()">
     </div>
   </div>
   <div>
@@ -28,13 +39,16 @@
         <th>Direcci&oacute;n</th>
       </tr>
       <tr>
-  
+        <td>Nombre</td>
+        <td>Direcci&oacute;n</td>		
       </tr>
       <tr>
-
+        <th>Nombre</th>
+        <th>Direcci&oacute;n</th>
       </tr>
       <tr>
- 
+         <th>Nombre</th>
+        <th>Direcci&oacute;n</th>
       </tr>
     </table>
   </body>

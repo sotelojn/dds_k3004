@@ -4,6 +4,32 @@
    <title>Busqueda de POIs</title>
     <link rel="stylesheet" href="css/styles.css"
   </head>
+    <script>
+  function check() {
+   var buscar = document.getElementById("nombre1").value;
+   var buscar2 = document.getElementById("nombreComienzaCon").value;
+   if(buscar == "CGP" && buscar2 == "Parada"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../poiCGP&Col.html");}
+	else{
+		 if(buscar == "Banco" && buscar2 == "CGP"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../poiCGP&Banco.html");}
+	else{
+		 if(buscar == "Kiosco" && buscar2 == "Hospital"){
+   document.write(buscar);
+		window.alert(buscar);
+		window.open("../poiComercio&Hospital.html");}
+	else{
+		
+   }
+   }
+   }
+   }
+
+  </script>
 <body>
   <h2>POIS</h2>
   <div>
@@ -24,10 +50,7 @@
     <table>
       <tr>
         <th>Nombre</th>
-        <th>Apodo</th>
-        <th>Foto</th>
-        <th>Fecha amistad</th>
-        <th>A&ntilde;os</th>
+        <th>Direcci&oacute;n</th>
       </tr>
       <tr>
   
