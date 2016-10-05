@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePOIsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_poiId}" for="poiId" />
+                    <h:inputText id="poiId" value="#{pOIsController.selected.poiId}" title="#{bundle.CreatePOIsTitle_poiId}" required="true" requiredMessage="#{bundle.CreatePOIsRequiredMessage_poiId}"/>
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{pOIsController.selected.tipo}" title="#{bundle.CreatePOIsTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_codBanco}" for="codBanco" />
+                    <h:selectOneMenu id="codBanco" value="#{pOIsController.selected.codBanco}" title="#{bundle.CreatePOIsTitle_codBanco}" >
+                        <f:selectItems value="#{bancosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_codCgp}" for="codCgp" />
+                    <h:selectOneMenu id="codCgp" value="#{pOIsController.selected.codCgp}" title="#{bundle.CreatePOIsTitle_codCgp}" >
+                        <f:selectItems value="#{cgpController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_codColectivo}" for="codColectivo" />
+                    <h:selectOneMenu id="codColectivo" value="#{pOIsController.selected.codColectivo}" title="#{bundle.CreatePOIsTitle_codColectivo}" >
+                        <f:selectItems value="#{colectivosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePOIsLabel_codLocal}" for="codLocal" />
+                    <h:selectOneMenu id="codLocal" value="#{pOIsController.selected.codLocal}" title="#{bundle.CreatePOIsTitle_codLocal}" >
+                        <f:selectItems value="#{localComercialController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pOIsController.create}" value="#{bundle.CreatePOIsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pOIsController.prepareList}" value="#{bundle.CreatePOIsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePOIsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

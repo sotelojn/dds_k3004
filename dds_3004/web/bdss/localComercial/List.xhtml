@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLocalComercialTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLocalComercialEmpty}" rendered="#{localComercialController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{localComercialController.items.rowCount > 0}">
+                    <h:outputText value="#{localComercialController.pagination.pageFirstItem + 1}..#{localComercialController.pagination.pageLastItem + 1}/#{localComercialController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{localComercialController.previous}" value="#{bundle.Previous} #{localComercialController.pagination.pageSize}" rendered="#{localComercialController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{localComercialController.next}" value="#{bundle.Next} #{localComercialController.pagination.pageSize}" rendered="#{localComercialController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{localComercialController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalComercialTitle_localId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalComercialTitle_direccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalComercialTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalComercialTitle_rubro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rubro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalComercialTitle_cantidadConsultas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadConsultas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{localComercialController.prepareView}" value="#{bundle.ListLocalComercialViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{localComercialController.prepareEdit}" value="#{bundle.ListLocalComercialEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{localComercialController.destroy}" value="#{bundle.ListLocalComercialDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{localComercialController.prepareCreate}" value="#{bundle.ListLocalComercialCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLocalComercialIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

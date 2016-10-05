@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBancosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_bancoId}" for="bancoId" />
+                    <h:inputText id="bancoId" value="#{bancosController.selected.bancoId}" title="#{bundle.CreateBancosTitle_bancoId}" required="true" requiredMessage="#{bundle.CreateBancosRequiredMessage_bancoId}"/>
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{bancosController.selected.direccion}" title="#{bundle.CreateBancosTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_zona}" for="zona" />
+                    <h:inputText id="zona" value="#{bancosController.selected.zona}" title="#{bundle.CreateBancosTitle_zona}" />
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{bancosController.selected.nombre}" title="#{bundle.CreateBancosTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_cantidadConsultas}" for="cantidadConsultas" />
+                    <h:inputText id="cantidadConsultas" value="#{bancosController.selected.cantidadConsultas}" title="#{bundle.CreateBancosTitle_cantidadConsultas}" />
+                    <h:outputLabel value="#{bundle.CreateBancosLabel_servicioBanco}" for="servicioBanco" />
+                    <h:selectOneMenu id="servicioBanco" value="#{bancosController.selected.servicioBanco}" title="#{bundle.CreateBancosTitle_servicioBanco}" >
+                        <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bancosController.create}" value="#{bundle.CreateBancosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bancosController.prepareList}" value="#{bundle.CreateBancosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBancosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

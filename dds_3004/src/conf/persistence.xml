@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="dds_3004PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>bd.Rol</class>
+    <class>bd.Funcionalidades</class>
+    <class>bd.Bancos</class>
+    <class>bd.Servicios</class>
+    <class>bd.Cgp</class>
+    <class>bd.LocalComercial</class>
+    <class>bd.POIs</class>
+    <class>bd.Usuarios</class>
+    <class>bd.Colectivos</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1434;databaseName=dds"/>
+      <property name="javax.persistence.jdbc.user" value="gd"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="gd2016"/>
+    </properties>
+  </persistence-unit>
+</persistence>

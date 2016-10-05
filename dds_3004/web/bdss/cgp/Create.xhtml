@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCgpTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCgpLabel_cgpId}" for="cgpId" />
+                    <h:inputText id="cgpId" value="#{cgpController.selected.cgpId}" title="#{bundle.CreateCgpTitle_cgpId}" required="true" requiredMessage="#{bundle.CreateCgpRequiredMessage_cgpId}"/>
+                    <h:outputLabel value="#{bundle.CreateCgpLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{cgpController.selected.direccion}" title="#{bundle.CreateCgpTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateCgpLabel_zona}" for="zona" />
+                    <h:inputText id="zona" value="#{cgpController.selected.zona}" title="#{bundle.CreateCgpTitle_zona}" />
+                    <h:outputLabel value="#{bundle.CreateCgpLabel_cantidadConsultas}" for="cantidadConsultas" />
+                    <h:inputText id="cantidadConsultas" value="#{cgpController.selected.cantidadConsultas}" title="#{bundle.CreateCgpTitle_cantidadConsultas}" />
+                    <h:outputLabel value="#{bundle.CreateCgpLabel_servicio}" for="servicio" />
+                    <h:selectOneMenu id="servicio" value="#{cgpController.selected.servicio}" title="#{bundle.CreateCgpTitle_servicio}" >
+                        <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cgpController.create}" value="#{bundle.CreateCgpSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cgpController.prepareList}" value="#{bundle.CreateCgpShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCgpIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
