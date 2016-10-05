@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLocalComercialTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLocalComercialLabel_localId}" for="localId" />
+                    <h:inputText id="localId" value="#{localComercialController.selected.localId}" title="#{bundle.CreateLocalComercialTitle_localId}" required="true" requiredMessage="#{bundle.CreateLocalComercialRequiredMessage_localId}"/>
+                    <h:outputLabel value="#{bundle.CreateLocalComercialLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{localComercialController.selected.direccion}" title="#{bundle.CreateLocalComercialTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateLocalComercialLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{localComercialController.selected.nombre}" title="#{bundle.CreateLocalComercialTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateLocalComercialLabel_rubro}" for="rubro" />
+                    <h:inputText id="rubro" value="#{localComercialController.selected.rubro}" title="#{bundle.CreateLocalComercialTitle_rubro}" />
+                    <h:outputLabel value="#{bundle.CreateLocalComercialLabel_cantidadConsultas}" for="cantidadConsultas" />
+                    <h:inputText id="cantidadConsultas" value="#{localComercialController.selected.cantidadConsultas}" title="#{bundle.CreateLocalComercialTitle_cantidadConsultas}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{localComercialController.create}" value="#{bundle.CreateLocalComercialSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{localComercialController.prepareList}" value="#{bundle.CreateLocalComercialShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLocalComercialIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

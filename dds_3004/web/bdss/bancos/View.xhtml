@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBancosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBancosLabel_bancoId}"/>
+                    <h:outputText value="#{bancosController.selected.bancoId}" title="#{bundle.ViewBancosTitle_bancoId}"/>
+                    <h:outputText value="#{bundle.ViewBancosLabel_direccion}"/>
+                    <h:outputText value="#{bancosController.selected.direccion}" title="#{bundle.ViewBancosTitle_direccion}"/>
+                    <h:outputText value="#{bundle.ViewBancosLabel_zona}"/>
+                    <h:outputText value="#{bancosController.selected.zona}" title="#{bundle.ViewBancosTitle_zona}"/>
+                    <h:outputText value="#{bundle.ViewBancosLabel_nombre}"/>
+                    <h:outputText value="#{bancosController.selected.nombre}" title="#{bundle.ViewBancosTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewBancosLabel_cantidadConsultas}"/>
+                    <h:outputText value="#{bancosController.selected.cantidadConsultas}" title="#{bundle.ViewBancosTitle_cantidadConsultas}"/>
+                    <h:outputText value="#{bundle.ViewBancosLabel_servicioBanco}"/>
+                    <h:outputText value="#{bancosController.selected.servicioBanco}" title="#{bundle.ViewBancosTitle_servicioBanco}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bancosController.destroyAndView}" value="#{bundle.ViewBancosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBancosEditLink}"/>
+                <br />
+                <h:commandLink action="#{bancosController.prepareCreate}" value="#{bundle.ViewBancosCreateLink}" />
+                <br />
+                <h:commandLink action="#{bancosController.prepareList}" value="#{bundle.ViewBancosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBancosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
